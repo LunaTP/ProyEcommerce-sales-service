@@ -10,13 +10,13 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api/ventas")
 @RequiredArgsConstructor
 public class VentasController {
 
     private final VentasService ventasService;
 
-    @PostMapping
+    @PostMapping("/crear")
     public ResponseEntity<VentaDto> registrar(@RequestBody VentaDto ventaDto) {
         VentaDto creada = ventasService.registrarVenta(ventaDto);
         return ResponseEntity.status(201).body(creada);
@@ -28,7 +28,7 @@ public class VentasController {
         return ResponseEntity.ok(ventasService.listarVentas());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/buscar/{id}")
     public ResponseEntity<VentaDto> buscarPorId(@PathVariable Integer id) {
         VentaDto dto = ventasService.obtenerVentaPorId(id);
         if (dto == null) return ResponseEntity.notFound().build();
