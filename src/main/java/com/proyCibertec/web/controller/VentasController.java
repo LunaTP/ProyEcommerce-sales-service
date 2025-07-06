@@ -18,6 +18,7 @@ public class VentasController {
 
     @PostMapping("/crear")
     public ResponseEntity<VentaDto> registrar(@RequestBody VentaDto ventaDto) {
+        System.out.println("v = " + ventaDto);
         VentaDto creada = ventasService.registrarVenta(ventaDto);
         return ResponseEntity.status(201).body(creada);
     }
